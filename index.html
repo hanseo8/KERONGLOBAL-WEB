@@ -73,11 +73,24 @@
     <div id="tsparticles" class="fixed inset-0 z-0 pointer-events-none"></div>
 
     <header class="fixed w-full z-50 bg-[#0A192F]/90 backdrop-blur-md border-b border-white/10 shadow-lg">
-        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 z-50">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between relative">
+
+            <!-- Mobile: Hamburger Menu (Left) -->
+            <button id="mobile-menu-btn"
+                class="md:hidden text-white p-2 -ml-2 hover:text-cyan-400 transition-colors focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Logo (Mobile: Center, Desktop: Left) -->
+            <a href="#"
+                class="absolute left-1/2 transform -translate-x-1/2 md:static md:translate-x-0 md:transform-none z-50 flex items-center space-x-3">
                 <span class="text-2xl font-bold text-white tracking-wide">KERON GLOBAL</span>
             </a>
 
+            <!-- Desktop Nav (Center) -->
             <nav
                 class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center space-x-10 text-sm font-medium text-slate-300 h-full">
                 <div class="group relative h-full flex items-center">
@@ -127,12 +140,42 @@
                 <a href="#contact" class="hover:text-cyan-400 transition-colors" data-i18n="nav_contact">Contact</a>
             </nav>
 
-            <div class="hidden md:flex items-center space-x-2 border-l border-white/20 pl-6 z-50">
+            <!-- Language Buttons (Right) -->
+            <div class="flex items-center space-x-2 md:border-l md:border-white/20 md:pl-6 z-50">
                 <button onclick="changeLanguage('kr')" id="btn-kr"
                     class="text-gray-400 hover:text-white cursor-pointer transition-colors font-bold">KR</button>
                 <span class="text-gray-600 text-xs">|</span>
                 <button onclick="changeLanguage('en')" id="btn-en"
                     class="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors font-bold">EN</button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#112240] border-t border-white/10 overflow-hidden">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <div class="text-xs font-bold text-slate-500 tracking-wider mb-1" data-i18n="nav_about">ABOUT</div>
+                <a href="#ceo-profile" class="text-slate-300 hover:text-cyan-400 pl-4 block" data-i18n="nav_ceo">CEO
+                    Profile</a>
+                <a href="#history" class="text-slate-300 hover:text-cyan-400 pl-4 block"
+                    data-i18n="nav_history">History</a>
+
+                <div class="h-px bg-white/5 my-2"></div>
+
+                <div class="text-xs font-bold text-slate-500 tracking-wider mb-1" data-i18n="nav_business">BUSINESS
+                    AREAS</div>
+                <a href="#solutions" class="text-slate-300 hover:text-cyan-400 pl-4 block" data-i18n="nav_sol">Business
+                    Solutions</a>
+                <a href="#certification" class="text-slate-300 hover:text-cyan-400 pl-4 block" data-i18n="nav_cert">AI
+                    Certification</a>
+                <a href="#study-abroad" class="text-slate-300 hover:text-cyan-400 pl-4 block"
+                    data-i18n="nav_study">Study Abroad</a>
+
+                <div class="h-px bg-white/5 my-2"></div>
+
+                <a href="#partners" class="text-slate-300 hover:text-cyan-400 font-medium block"
+                    data-i18n="nav_partners">Partners</a>
+                <a href="#contact" class="text-slate-300 hover:text-cyan-400 font-medium block"
+                    data-i18n="nav_contact">Contact</a>
             </div>
         </div>
     </header>
@@ -600,32 +643,45 @@
     </script>
 
     <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Particles
         (async () => {
             await tsParticles.load("tsparticles", {
-                fullScreen: { enable: true, zIndex: -1 }, // 배경으로 고정
-                background: { color: "transparent" }, // 투명 배경
+                fullScreen: { enable: false },
+                background: { color: "transparent" },
                 particles: {
                     number: { value: 80, density: { enable: true, area: 800 } },
                     color: { value: "#ffffff" },
                     shape: { type: "circle" },
-                    opacity: { value: 0.5, random: true },
+                    opacity: {
+                        value: 0.8,
+                        random: true,
+                        animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
+                    },
                     size: { value: 3, random: true },
                     move: {
                         enable: true,
-                        speed: 0.5, // 별 이동 속도 (천천히)
+                        speed: 1,
                         direction: "none",
                         random: true,
                         outModes: "out"
                     }
                 },
-                interactivity: {
-                    events: {
-                        onHover: { enable: true, mode: "bubble" }, // 마우스 오버 시 커짐
-                    },
-                    modes: {
-                        bubble: { size: 6, distance: 200, duration: 2, opacity: 0.8 }
-                    }
-                }
+                detectRetina: true
             });
         })();
     </script>
