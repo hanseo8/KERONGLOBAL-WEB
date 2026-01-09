@@ -70,7 +70,7 @@
 </head>
 
 <body>
-    <div id="tsparticles" class="fixed inset-0 z-0 pointer-events-none"></div>
+    <div id="tsparticles" class="fixed inset-0 z-10 pointer-events-none"></div>
 
     <header class="fixed w-full z-50 bg-[#0A192F]/90 backdrop-blur-md border-b border-white/10 shadow-lg">
         <div class="container mx-auto px-6 h-20 flex items-center justify-between relative">
@@ -143,10 +143,10 @@
             <!-- Language Buttons (Right) -->
             <div class="flex items-center space-x-2 md:border-l md:border-white/20 md:pl-6 z-50">
                 <button onclick="changeLanguage('kr')" id="btn-kr"
-                    class="text-gray-400 hover:text-white cursor-pointer transition-colors font-bold">KR</button>
+                    class="text-gray-400 hover:text-white cursor-pointer transition-colors font-bold text-sm">KR</button>
                 <span class="text-gray-600 text-xs">|</span>
                 <button onclick="changeLanguage('en')" id="btn-en"
-                    class="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors font-bold">EN</button>
+                    class="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors font-bold text-sm">EN</button>
             </div>
         </div>
 
@@ -633,11 +633,11 @@
             const btnEn = document.getElementById('btn-en');
 
             if (lang === 'kr') {
-                btnKr.className = "text-white font-bold cursor-pointer transition-colors";
-                btnEn.className = "text-gray-400 hover:text-white cursor-pointer transition-colors";
+                btnKr.className = "text-white font-bold cursor-pointer transition-colors text-sm";
+                btnEn.className = "text-gray-400 hover:text-white cursor-pointer transition-colors text-sm";
             } else {
-                btnEn.className = "text-cyan-400 font-bold cursor-pointer transition-colors";
-                btnKr.className = "text-gray-400 hover:text-white cursor-pointer transition-colors";
+                btnEn.className = "text-cyan-400 font-bold cursor-pointer transition-colors text-sm";
+                btnKr.className = "text-gray-400 hover:text-white cursor-pointer transition-colors text-sm";
             }
         }
     </script>
