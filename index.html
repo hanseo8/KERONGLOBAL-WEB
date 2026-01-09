@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KERON GLOBAL - AI & Education</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { 900: '#0A192F', 800: '#112240' },
+                        primary: '#007BFF',
+                        cyan: { 400: '#22D3EE', 500: '#06B6D4' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0A192F;
+            color: #e2e8f0;
+            font-family: 'Pretendard', sans-serif;
+            /* 한글 폰트 권장 */
+            box-shadow: inset 0 0 150px rgba(6, 182, 212, 0.4);
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #00E5FF, #007BFF);
+        }
+
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        /* Dropdown Animation */
+        .group:hover .group-hover\:block {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="fixed w-full z-50 bg-[#0A192F]/90 backdrop-blur-md border-b border-white/10 shadow-lg">
+        <div class="container mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 z-50">
+                <span class="text-2xl font-bold text-white tracking-wide">KERON GLOBAL</span>
+            </a>
+
+            <nav
+                class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center space-x-10 text-sm font-medium text-slate-300 h-full">
+                <div class="group relative h-full flex items-center">
+                    <button
+                        class="hover:text-cyan-400 transition-colors flex items-center space-x-1 py-4 focus:outline-none">
+                        <span data-i18n="nav_about">ABOUT</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </button>
+                    <div
+                        class="hidden group-hover:block absolute top-full left-1/2 transform -translate-x-1/2 w-48 bg-[#112240] border border-white/10 shadow-xl rounded-b-xl overflow-hidden pt-2">
+                        <a href="#ceo-profile"
+                            class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors border-b border-white/5"
+                            data-i18n="nav_ceo">CEO Profile</a>
+                        <a href="#history"
+                            class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors"
+                            data-i18n="nav_history">History</a>
+                    </div>
+                </div>
+
+                <div class="group relative h-full flex items-center">
+                    <button
+                        class="hover:text-cyan-400 transition-colors flex items-center space-x-1 py-4 focus:outline-none">
+                        <span data-i18n="nav_business">BUSINESS AREAS</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </button>
+                    <div
+                        class="hidden group-hover:block absolute top-full left-1/2 transform -translate-x-1/2 w-56 bg-[#112240] border border-white/10 shadow-xl rounded-b-xl overflow-hidden pt-2">
+                        <a href="#solutions"
+                            class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors border-b border-white/5"
+                            data-i18n="nav_sol">Business Solutions</a>
+                        <a href="#certification"
+                            class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors border-b border-white/5"
+                            data-i18n="nav_cert">AI Certification</a>
+                        <a href="#study-abroad"
+                            class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors"
+                            data-i18n="nav_study">Study Abroad</a>
+                    </div>
+                </div>
+
+                <a href="#partners" class="hover:text-cyan-400 transition-colors" data-i18n="nav_partners">Partners</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors" data-i18n="nav_contact">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-2 border-l border-white/20 pl-6 z-50">
+                <button onclick="changeLanguage('kr')" id="btn-kr"
+                    class="text-gray-400 hover:text-white cursor-pointer transition-colors font-bold">KR</button>
+                <span class="text-gray-600 text-xs">|</span>
+                <button onclick="changeLanguage('en')" id="btn-en"
+                    class="text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors font-bold">EN</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-center bg-black">
+        <div class="absolute inset-0 z-0">
+            <img src="hero_bg.png" alt="Background" class="w-full h-full object-cover opacity-40">
+        </div>
+        <div class="absolute inset-0 bg-[#0A192F]/80 mix-blend-hard-light"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="inline-block px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-medium mb-6 backdrop-blur-sm"
+                data-i18n="hero_badge">
+                Official Launch: Premier AI Solutions
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-white drop-shadow-2xl">
+                <span data-i18n="hero_title_1">Future of Intelligence:</span> <br />
+                <span class="text-gradient" data-i18n="hero_title_2">AI Chip & On-Device AI</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light drop-shadow-lg"
+                data-i18n="hero_desc">
+                KERON GLOBAL connects Korea's advanced Semiconductor know-how with Indonesia's potential.
+            </p>
+        </div>
+    </section>
+
+    <section id="ceo-profile" class="py-24 bg-[#0B1221] relative border-b border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3 w-full">
+                    <div
+                        class="relative rounded-2xl overflow-hidden border border-cyan-500/20 shadow-2xl bg-gradient-to-b from-white/5 to-transparent p-1">
+                        <div
+                            class="bg-gray-800 aspect-[3/4] rounded-xl flex items-center justify-center overflow-hidden relative">
+                            <img src="ceo_profile.jpg" alt="CEO James Seo" class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                                <h3 class="text-white text-xl font-bold">HANSUK SEO</h3>
+                                <p class="text-cyan-400 text-sm">Founder & CEO</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 w-full">
+                    <div
+                        class="inline-block px-3 py-1 bg-cyan-500/10 text-cyan-400 text-xs font-bold tracking-wider mb-4 rounded-full">
+                        LEADERSHIP</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-i18n="ceo_headline">Bridging
+                        Education & Technology</h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-8" data-i18n="ceo_desc">
+                        "15년간의 북미와 오세아니아 현지 경험을 바탕으로, 단순한 교육을 넘어 실질적인 커리어 로드맵을 제시합니다.
+                        KERON GLOBAL은 AI 기술 교육과 글로벌 인재 양성을 통해 한국과 인도네시아를 잇는 든든한 가교가 되겠습니다."
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10 flex items-center space-x-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
+                                <span class="font-bold text-xs">USA</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Penn State Univ.</p>
+                                <p class="text-xs text-slate-500">Alumni</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10 flex items-center space-x-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-cyan-900/50 flex items-center justify-center text-cyan-400">
+                                <span class="font-bold text-xs">NZ</span>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">BBI / Macleans</p>
+                                <p class="text-xs text-slate-500">Alumni</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="history" class="py-24 bg-[#0A192F]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-white" data-i18n="history_title">Our Journey</h2>
+                <div class="w-16 h-1 bg-cyan-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto border-l-2 border-white/10 ml-4 md:ml-auto pl-8 space-y-12">
+                <div class="relative">
+                    <span
+                        class="absolute -left-[41px] top-0 w-5 h-5 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]"></span>
+                    <h3 class="text-cyan-400 font-bold text-xl mb-2">2026</h3>
+                    <h4 class="text-white text-lg font-semibold mb-2" data-i18n="hist_2026_title">Expansion to Indonesia
+                    </h4>
+                    <p class="text-slate-400" data-i18n="hist_2026_desc">Launched AI Chip education curriculum &
+                        established Jakarta partnership office.</p>
+                </div>
+                <div class="relative">
+                    <span
+                        class="absolute -left-[41px] top-0 w-5 h-5 rounded-full bg-[#112240] border-2 border-slate-500"></span>
+                    <h3 class="text-slate-300 font-bold text-xl mb-4">2025</h3>
+                    <h4 class="text-white text-lg font-semibold mb-2" data-i18n="hist_2025_title">KERON GLOBAL
+                        Establishment</h4>
+                    <p class="text-slate-400 mb-4" data-i18n="hist_2025_desc">Founded with a vision to connect global
+                        education and future technology.</p>
+                    <ul class="space-y-2 text-slate-400 text-sm leading-relaxed">
+                        <li data-i18n="hist_2025_01"><span class="text-cyan-400 font-bold mr-2">'25.01</span> Official
+                            Exclusive Import Agreement with Indonesian Palm & Coconut Oil 'Pt.Bona Oil Ltd'</li>
+                    </ul>
+                </div>
+
+                <!-- Added Entry -->
+                <div class="relative">
+                    <span
+                        class="absolute -left-[41px] top-0 w-5 h-5 rounded-full bg-[#112240] border-2 border-cyan-500/50"></span>
+                    <h3 class="text-slate-300 font-bold text-xl mb-4">2020 - 2024</h3>
+                    <h4 class="text-white text-lg font-semibold mb-3" data-i18n="hist_2020_title">Innovation & Growth
+                    </h4>
+                    <ul class="space-y-2 text-slate-400 text-sm leading-relaxed">
+                        <li data-i18n="hist_2024_10"><span class="text-cyan-400 font-bold mr-2">'24.10</span> Signed
+                            Official Exclusive Import License for Mytimber Wood Co., Ltd.</li>
+                        <li data-i18n="hist_2024_07"><span class="text-cyan-400 font-bold mr-2">'24.07</span> Launched
+                            'Misanli Gamasot 1995' & Signed Lotte Home Shopping Agreement</li>
+                        <li data-i18n="hist_2023_11"><span class="text-cyan-400 font-bold mr-2">'23.11</span>
+                            Established Undo Foods (Food Distribution)</li>
+                        <li data-i18n="hist_2023_09"><span class="text-cyan-400 font-bold mr-2">'23.09</span>
+                            Established Indonesia Local Subsidiary & Attended Pet Expo</li>
+                        <li data-i18n="hist_2023_07"><span class="text-cyan-400 font-bold mr-2">'23.07</span> Attended
+                            ASEAN G-Fair (Thailand) as Siheung Excellent Partner</li>
+                        <li data-i18n="hist_2023_04"><span class="text-cyan-400 font-bold mr-2">'23.04</span> SNU
+                            Veterinary Medicine AHP 9th Selection & Agreement</li>
+                        <li data-i18n="hist_2022_04"><span class="text-cyan-400 font-bold mr-2">'22.04</span> Selected
+                            for MOIS 'Region-Led Youth Project'</li>
+                        <li data-i18n="hist_2022_03"><span class="text-cyan-400 font-bold mr-2">'22.03</span> Selected
+                            for MSS 'Youth Startup Academy 12th Batch' (Ansan Main Campus)</li>
+                        <li data-i18n="hist_2021_07"><span class="text-cyan-400 font-bold mr-2">'21.07</span> Selected
+                            for Siheung Industry Promotion Agency 'Youth Startup Support'</li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <span
+                        class="absolute -left-[41px] top-0 w-5 h-5 rounded-full bg-[#112240] border-2 border-slate-500"></span>
+                    <h3 class="text-slate-300 font-bold text-xl mb-2">Before</h3>
+                    <h4 class="text-white text-lg font-semibold mb-2" data-i18n="hist_before_title">Foundation & Network
+                        Building</h4>
+                    <p class="text-slate-400" data-i18n="hist_before_desc">15+ years of academic networking in US/NZ and
+                        IT sector experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="py-24 bg-[#0B1A32] border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <span class="text-cyan-400 font-bold tracking-wider text-sm" data-i18n="biz_badge">BUSINESS
+                        SOLUTIONS</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-6 text-white" data-i18n="biz_title">Corporate AI
+                        Training</h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6" data-i18n="biz_desc">
+                        Transform your workforce with data-driven training. We provide customized AI curriculums for
+                        companies and direct talent dispatch services.
+                    </p>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex items-center"><span class="text-cyan-500 mr-2">✓</span> <span
+                                data-i18n="biz_item1">Employee Reskilling Programs</span></li>
+                        <li class="flex items-center"><span class="text-cyan-500 mr-2">✓</span> <span
+                                data-i18n="biz_item2">AI Specialist Talent Dispatch</span></li>
+                        <li class="flex items-center"><span class="text-cyan-500 mr-2">✓</span> <span
+                                data-i18n="biz_item3">On-site Workshops</span></li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 rounded-xl overflow-hidden shadow-2xl">
+                    <img src="visual_corporate.jpg" alt="Corporate Solutions"
+                        class="w-full h-auto object-cover opacity-80 hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certification" class="py-24 bg-black relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+                <div class="md:w-1/2">
+                    <span class="text-purple-400 font-bold tracking-wider text-sm"
+                        data-i18n="edu_badge">EDUCATION</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-6 text-white">
+                        <span data-i18n="edu_title">Next-Gen</span> <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">NPU
+                            Architecture</span>
+                    </h2>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6" data-i18n="edu_desc">
+                        Experience the power of dedicated AI processors. Our curriculum covers the latest in Neural
+                        Processing Unit design and low-power AI chip optimization.
+                    </p>
+                    <button
+                        class="px-6 py-3 border border-white/20 rounded-full text-white hover:bg-white/10 transition-colors"
+                        data-i18n="edu_btn">View Curriculum</button>
+                </div>
+                <div
+                    class="md:w-1/2 aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+                    <video autoplay loop muted playsinline
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        <source
+                            src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-computer-chip-manufacturing-3221-large.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="study-abroad" class="py-24 bg-[#0A192F] relative overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-amber-900/10 to-transparent pointer-events-none">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-amber-400 font-bold tracking-wider text-sm" data-i18n="study_badge">STUDY ABROAD
+                    CONSULTING</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-6 text-white" data-i18n="study_title">Global Pathway
+                    Program</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto" data-i18n="study_desc">
+                    Based on our CEO's 15-year journey, we provide a failure-free roadmap for studying in the US and New
+                    Zealand.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div
+                    class="p-8 rounded-xl bg-white/5 border border-white/5 hover:border-amber-500/30 transition-all hover:-translate-y-2">
+                    <div
+                        class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="card1_title">Insider Network</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="card1_desc">Direct connections with top schools in NZ &
+                        US. Access scholarship info unavailable to the public.</p>
+                </div>
+                <div
+                    class="p-8 rounded-xl bg-white/5 border border-white/5 hover:border-amber-500/30 transition-all hover:-translate-y-2">
+                    <div
+                        class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                            <path d="M2 12h20" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="card2_title">Strategic Roadmap</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="card2_desc">From early study abroad to university
+                        admission. Customized timing and strategy for each student.</p>
+                </div>
+                <div
+                    class="p-8 rounded-xl bg-white/5 border border-white/5 hover:border-amber-500/30 transition-all hover:-translate-y-2">
+                    <div
+                        class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center text-amber-400 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="card3_title">Total Care</h3>
+                    <p class="text-slate-400 text-sm" data-i18n="card3_desc">Beyond admission. We offer academic
+                        mentoring and cultural adaptation support locally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="py-20 bg-[#0B1A32] border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold mb-8 text-white" data-i18n="partner_title">Trusted Global Partners</h2>
+            <div
+                class="flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <span class="text-2xl font-bold text-slate-400">GOOGLE</span>
+                <span class="text-2xl font-bold text-slate-400">MICROSOFT</span>
+                <span class="text-2xl font-bold text-slate-400">TENSORFLOW</span>
+                <span class="text-2xl font-bold text-slate-400">NVIDIA</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="border-t border-white/10 bg-[#061020] pt-20 pb-10">
+        <div class="container mx-auto px-6 text-center text-slate-500 text-sm">
+            <div class="flex items-center justify-center space-x-3 mb-8">
+                <span class="text-xl font-bold text-white">KERON GLOBAL</span>
+            </div>
+            <div class="mb-8">
+                <h4 class="text-white font-semibold mb-2" data-i18n="footer_partner">Partner with Us</h4>
+                <a href="mailto:help@keronglobal.com"
+                    class="text-cyan-400 hover:text-cyan-300 text-lg transition-colors">
+                    help@keronglobal.com
+                </a>
+            </div>
+            <p>&copy; 2026 KERON GLOBAL. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                nav_about: "ABOUT",
+                nav_ceo: "CEO Profile",
+                nav_history: "History",
+                nav_business: "BUSINESS AREAS",
+                nav_sol: "Business Solutions",
+                nav_cert: "AI Certification",
+                nav_study: "Study Abroad",
+                nav_partners: "Partners",
+                nav_contact: "Contact",
+
+                hero_badge: "Official Launch: Premier AI Solutions",
+                hero_title_1: "Future of Intelligence:",
+                hero_title_2: "AI Chip & On-Device AI",
+                hero_desc: "KERON GLOBAL connects Korea's advanced Semiconductor know-how with Indonesia's potential.",
+
+                ceo_headline: "Bridging Education & Technology",
+                ceo_desc: "\"Based on 15 years of experience in North America and Oceania, I present a real career roadmap beyond simple education. KERON GLOBAL will be a solid bridge connecting Korea and Indonesia through AI technology education and global talent fostering.\"",
+
+                history_title: "Our Journey",
+                hist_2026_title: "Expansion to Indonesia",
+                hist_2026_desc: "Launched AI Chip education curriculum & established Jakarta partnership office.",
+                hist_2025_title: "KERON GLOBAL Establishment",
+                hist_2025_desc: "Founded with a vision to connect global education and future technology.",
+                hist_2025_01: "<span class='text-cyan-400 font-bold mr-2'>'25.01</span> Official Exclusive Import Agreement with Indonesian Palm & Coconut Oil 'Pt.Bona Oil Ltd'",
+                hist_2020_title: "Innovation & Growth",
+                hist_2024_10: "<span class='text-cyan-400 font-bold mr-2'>'24.10</span> Signed Official Exclusive Import License for Mytimber Wood Co., Ltd.",
+                hist_2024_07: "<span class='text-cyan-400 font-bold mr-2'>'24.07</span> Launched 'Misanli Gamasot 1995' & Signed Lotte Home Shopping Agreement",
+                hist_2023_11: "<span class='text-cyan-400 font-bold mr-2'>'23.11</span> Established Undo Foods (Food Distribution)",
+                hist_2023_09: "<span class='text-cyan-400 font-bold mr-2'>'23.09</span> Established Indonesia Local Subsidiary & Attended Pet Expo",
+                hist_2023_07: "<span class='text-cyan-400 font-bold mr-2'>'23.07</span> Attended ASEAN G-Fair (Thailand) as Siheung Excellent Partner",
+                hist_2023_04: "<span class='text-cyan-400 font-bold mr-2'>'23.04</span> SNU Veterinary Medicine AHP 9th Selection & Agreement",
+                hist_2022_04: "<span class='text-cyan-400 font-bold mr-2'>'22.04</span> Selected for MOIS 'Region-Led Youth Project'",
+                hist_2022_03: "<span class='text-cyan-400 font-bold mr-2'>'22.03</span> Selected for MSS 'Youth Startup Academy 12th Batch' (Ansan Main Campus)",
+                hist_2021_07: "<span class='text-cyan-400 font-bold mr-2'>'21.07</span> Selected for Siheung Industry Promotion Agency 'Youth Startup Support'",
+                hist_before_title: "Foundation & Network Building",
+                hist_before_desc: "15+ years of academic networking in US/NZ and IT sector experience.",
+
+                biz_badge: "BUSINESS SOLUTIONS",
+                biz_title: "Corporate AI Training",
+                biz_desc: "Transform your workforce with data-driven training. We provide customized AI curriculums for companies and direct talent dispatch services.",
+                biz_item1: "Employee Reskilling Programs",
+                biz_item2: "AI Specialist Talent Dispatch",
+                biz_item3: "On-site Workshops",
+
+                edu_badge: "EDUCATION",
+                edu_title: "Next-Gen",
+                edu_desc: "Experience the power of dedicated AI processors. Our curriculum covers the latest in Neural Processing Unit design and low-power AI chip optimization.",
+                edu_btn: "View Curriculum",
+
+                study_badge: "STUDY ABROAD CONSULTING",
+                study_title: "Global Pathway Program",
+                study_desc: "Based on our CEO's 15-year journey, we provide a failure-free roadmap for studying in the US and New Zealand.",
+                card1_title: "Insider Network",
+                card1_desc: "Direct connections with top schools in NZ & US. Access scholarship info unavailable to the public.",
+                card2_title: "Strategic Roadmap",
+                card2_desc: "From early study abroad to university admission. Customized timing and strategy for each student.",
+                card3_title: "Total Care",
+                card3_desc: "Beyond admission. We offer academic mentoring and cultural adaptation support locally.",
+
+                partner_title: "Trusted Global Partners",
+                footer_partner: "Partner with Us"
+            },
+            kr: {
+                nav_about: "회사 소개",
+                nav_ceo: "CEO 프로필",
+                nav_history: "회사 연혁",
+                nav_business: "사업 영역",
+                nav_sol: "기업 솔루션",
+                nav_cert: "AI 자격증",
+                nav_study: "유학 컨설팅",
+                nav_partners: "파트너",
+                nav_contact: "문의하기",
+
+                hero_badge: "공식 런칭: 프리미엄 AI 솔루션",
+                hero_title_1: "지능의 미래:",
+                hero_title_2: "AI 반도체 & 온디바이스 AI",
+                hero_desc: "케론글로벌은 한국의 첨단 반도체 노하우와 인도네시아의 잠재력을 연결하여 미래 AI 시대를 선도합니다.",
+
+                ceo_headline: "교육과 기술을 잇는 가교",
+                ceo_desc: "\"15년간의 북미와 오세아니아 현지 경험을 바탕으로, 단순한 교육을 넘어 실질적인 커리어 로드맵을 제시합니다. 케론글로벌은 AI 기술 교육과 글로벌 인재 양성을 통해 한국과 인도네시아를 잇는 든든한 가교가 되겠습니다.\"",
+
+                history_title: "우리의 여정",
+                hist_2026_title: "인도네시아 진출",
+                hist_2026_desc: "AI 반도체 교육 커리큘럼 런칭 및 자카르타 파트너십 오피스 설립",
+                hist_2025_title: "케론글로벌 설립",
+                hist_2025_desc: "글로벌 교육과 미래 기술을 연결한다는 비전으로 설립",
+                hist_2025_01: "<span class='text-cyan-400 font-bold mr-2'>'25.01</span> 인도네시아 팜&코코넛오일 'Pt.Bona Oil Ltd' 공식 독점 수입원 체결",
+                hist_2020_title: "혁신과 성장 (강서코퍼레이션)",
+                hist_2024_10: "<span class='text-cyan-400 font-bold mr-2'>'24.10</span> 목재부문 Mytimber 목재유한회사 공식 독점 수입 라이센스 체결",
+                hist_2024_07: "<span class='text-cyan-400 font-bold mr-2'>'24.07</span> 식품업 '미산리가마솥1995' 런칭​ 및 홈쇼핑 협약(롯데)",
+                hist_2023_11: "<span class='text-cyan-400 font-bold mr-2'>'23.11</span> 운도식품 설립(식품 유통기업)",
+                hist_2023_09: "<span class='text-cyan-400 font-bold mr-2'>'23.09</span> 인도네시아 현지법인 설립 펫 엑스포 참석",
+                hist_2023_07: "<span class='text-cyan-400 font-bold mr-2'>'23.07</span> 아세안 Gfair(태국) 시흥시 우수협력업체 참관",
+                hist_2023_04: "<span class='text-cyan-400 font-bold mr-2'>'23.04</span> 서울대학교 수의과대학 AHP 9기 선정 및 협약",
+                hist_2022_04: "<span class='text-cyan-400 font-bold mr-2'>'22.04</span> 행정안전부 '지역주도형 청년사업' 선정",
+                hist_2022_03: "<span class='text-cyan-400 font-bold mr-2'>'22.03</span> 중소벤처기업부 '청년창업사관학교 본교(안산) 12기' 선정",
+                hist_2021_07: "<span class='text-cyan-400 font-bold mr-2'>'21.07</span> 시흥창업진흥원 '청년창업 지원기업' 선정",
+                hist_before_title: "기반 구축 및 네트워크",
+                hist_before_desc: "15년 이상의 미국/뉴질랜드 학계 네트워크 및 IT 분야 경험 축적",
+
+                biz_badge: "기업 솔루션",
+                biz_title: "기업 맞춤형 AI 교육",
+                biz_desc: "데이터 기반 교육으로 조직을 혁신하세요. 기업을 위한 맞춤형 AI 커리큘럼과 전문 인력 송출 서비스를 제공합니다.",
+                biz_item1: "임직원 리스킬링 프로그램",
+                biz_item2: "AI 전문 인력 파견",
+                biz_item3: "현장 워크샵 및 세미나",
+
+                edu_badge: "교육 프로그램",
+                edu_title: "차세대",
+                edu_desc: "AI 전용 프로세서의 강력한 성능을 경험하세요. 최신 NPU 설계 및 저전력 AI 칩 최적화 과정을 다룹니다.",
+                edu_btn: "커리큘럼 보기",
+
+                study_badge: "유학 컨설팅",
+                study_title: "글로벌 패스웨이 프로그램",
+                study_desc: "CEO의 15년 현지 경험을 바탕으로, 실패 없는 미국 및 뉴질랜드 유학 로드맵을 제시합니다.",
+                card1_title: "인사이더 네트워크",
+                card1_desc: "미국/뉴질랜드 명문학교 직통 네트워크. 일반에 공개되지 않는 장학 정보를 제공합니다.",
+                card2_title: "전략적 로드맵",
+                card2_desc: "조기 유학부터 대학 입시까지. 학생별 최적의 타이밍과 입시 전략을 설계합니다.",
+                card3_title: "토탈 케어",
+                card3_desc: "합격을 넘어, 현지 학업 멘토링과 문화 적응까지 책임지는 토탈 케어 서비스입니다.",
+
+                partner_title: "글로벌 파트너",
+                footer_partner: "제휴 문의"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update Text Content
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update Button Styles
+            const btnKr = document.getElementById('btn-kr');
+            const btnEn = document.getElementById('btn-en');
+
+            if (lang === 'kr') {
+                btnKr.className = "text-white font-bold cursor-pointer transition-colors";
+                btnEn.className = "text-gray-400 hover:text-white cursor-pointer transition-colors";
+            } else {
+                btnEn.className = "text-cyan-400 font-bold cursor-pointer transition-colors";
+                btnKr.className = "text-gray-400 hover:text-white cursor-pointer transition-colors";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
