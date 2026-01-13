@@ -24,7 +24,6 @@
             background-color: #0A192F;
             color: #e2e8f0;
             font-family: 'Pretendard', sans-serif;
-            /* 한글 폰트 권장 */
             box-shadow: inset 0 0 150px rgba(6, 182, 212, 0.4);
             min-height: 100vh;
             margin: 0;
@@ -35,17 +34,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-image: linear-gradient(to right, #00E5FF, #007BFF);
-        }
-
-        .video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-            opacity: 0.3;
         }
 
         /* Dropdown Animation */
@@ -65,6 +53,55 @@
                 transform: translateY(0);
             }
         }
+
+        /* --- 파트너 섹션 무한 루프 애니메이션 추가 --- */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.02);
+            /* 가독성을 위한 미세한 배경 */
+        }
+
+        .marquee-content {
+            display: flex;
+            width: max-content;
+            animation: scrollMarquee 30s linear infinite;
+        }
+
+        /* 마우스 올리면 멈춤 */
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        .partner-item {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 0 60px;
+            /* 이름 사이 간격 */
+            transition: color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        /* 호버 시 색상 변경 (기존 테마인 Cyan 사용) */
+        .partner-item:hover {
+            color: #22D3EE;
+            transform: scale(1.1);
+        }
+
+        @keyframes scrollMarquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
 </head>
@@ -74,8 +111,6 @@
 
     <header class="fixed w-full z-50 bg-[#0A192F]/90 backdrop-blur-md border-b border-white/10 shadow-lg">
         <div class="container mx-auto px-6 h-20 flex items-center justify-between relative">
-
-            <!-- Mobile: Hamburger Menu (Left) -->
             <button id="mobile-menu-btn"
                 class="md:hidden text-white p-2 -ml-2 hover:text-cyan-400 transition-colors focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -83,14 +118,10 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
-
-            <!-- Logo (Mobile: Center, Desktop: Left) -->
             <a href="#"
                 class="absolute left-1/2 transform -translate-x-1/2 md:static md:translate-x-0 md:transform-none z-50 flex items-center space-x-3">
                 <span class="text-2xl font-bold text-white tracking-wide">KERON GLOBAL</span>
             </a>
-
-            <!-- Desktop Nav (Center) -->
             <nav
                 class="hidden md:flex absolute left-1/2 transform -translate-x-1/2 items-center space-x-10 text-sm font-medium text-slate-300 h-full">
                 <div class="group relative h-full flex items-center">
@@ -112,7 +143,6 @@
                             data-i18n="nav_history">History</a>
                     </div>
                 </div>
-
                 <div class="group relative h-full flex items-center">
                     <button
                         class="hover:text-cyan-400 transition-colors flex items-center space-x-1 py-4 focus:outline-none">
@@ -124,23 +154,19 @@
                     </button>
                     <div
                         class="hidden group-hover:block absolute top-full left-1/2 transform -translate-x-1/2 w-56 bg-[#112240] border border-white/10 shadow-xl rounded-b-xl overflow-hidden pt-2">
-                        <a href="#solutions"
+                        <a href="#education"
                             class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors border-b border-white/5"
-                            data-i18n="nav_sol">Business Solutions</a>
-                        <a href="#certification"
-                            class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors border-b border-white/5"
-                            data-i18n="nav_cert">AI Certification</a>
+                            data-i18n="nav_education">AI Education</a>
                         <a href="#study-abroad"
                             class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors"
                             data-i18n="nav_study">Study Abroad</a>
                     </div>
                 </div>
-
-                <a href="#partners" class="hover:text-cyan-400 transition-colors" data-i18n="nav_partners">Partners</a>
-                <a href="#contact" class="hover:text-cyan-400 transition-colors" data-i18n="nav_contact">Contact</a>
+                <a href="#partners" class="hover:text-cyan-400 transition-colors uppercase"
+                    data-i18n="nav_partners">Partners</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors uppercase"
+                    data-i18n="nav_contact">Contact</a>
             </nav>
-
-            <!-- Language Buttons (Right) -->
             <div class="flex items-center space-x-2 md:border-l md:border-white/20 md:pl-6 z-50">
                 <button onclick="changeLanguage('kr')" id="btn-kr"
                     class="text-gray-400 hover:text-white cursor-pointer transition-colors font-bold text-sm">KR</button>
@@ -150,58 +176,46 @@
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden bg-[#112240] border-t border-white/10 overflow-hidden">
-            <div class="flex flex-col px-6 py-4 space-y-4">
-                <div class="text-xs font-bold text-slate-500 tracking-wider mb-1" data-i18n="nav_about">ABOUT</div>
-                <a href="#ceo-profile" class="text-slate-300 hover:text-cyan-400 pl-4 block" data-i18n="nav_ceo">CEO
-                    Profile</a>
-                <a href="#history" class="text-slate-300 hover:text-cyan-400 pl-4 block"
-                    data-i18n="nav_history">History</a>
-
-                <div class="h-px bg-white/5 my-2"></div>
-
-                <div class="text-xs font-bold text-slate-500 tracking-wider mb-1" data-i18n="nav_business">BUSINESS
-                    AREAS</div>
-                <a href="#solutions" class="text-slate-300 hover:text-cyan-400 pl-4 block" data-i18n="nav_sol">Business
-                    Solutions</a>
-                <a href="#certification" class="text-slate-300 hover:text-cyan-400 pl-4 block" data-i18n="nav_cert">AI
-                    Certification</a>
-                <a href="#study-abroad" class="text-slate-300 hover:text-cyan-400 pl-4 block"
-                    data-i18n="nav_study">Study Abroad</a>
-
-                <div class="h-px bg-white/5 my-2"></div>
-
-                <a href="#partners" class="text-slate-300 hover:text-cyan-400 font-medium block"
+            <div class="px-6 py-4 space-y-4">
+                <div class="border-b border-white/5 pb-4">
+                    <span class="block text-cyan-400 text-xs font-bold mb-2">ABOUT</span>
+                    <a href="#ceo-profile" class="block text-slate-300 hover:text-white py-1 pl-4"
+                        data-i18n="nav_ceo">CEO Profile</a>
+                    <a href="#history" class="block text-slate-300 hover:text-white py-1 pl-4"
+                        data-i18n="nav_history">History</a>
+                </div>
+                <div class="border-b border-white/5 pb-4">
+                    <span class="block text-cyan-400 text-xs font-bold mb-2" data-i18n="nav_business">BUSINESS
+                        AREAS</span>
+                    <a href="#education" class="block text-slate-300 hover:text-white py-1 pl-4"
+                        data-i18n="nav_education">AI Education</a>
+                    <a href="#study-abroad" class="block text-slate-300 hover:text-white py-1 pl-4"
+                        data-i18n="nav_study">Study Abroad</a>
+                </div>
+                <a href="#partners" class="block text-slate-300 hover:text-white font-medium"
                     data-i18n="nav_partners">Partners</a>
-                <a href="#contact" class="text-slate-300 hover:text-cyan-400 font-medium block"
+                <a href="#contact" class="block text-slate-300 hover:text-white font-medium"
                     data-i18n="nav_contact">Contact</a>
             </div>
         </div>
     </header>
 
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden text-center bg-black">
-        <div class="absolute inset-0 z-0">
-            <img src="hero_bg.png" alt="Background" class="w-full h-full object-cover opacity-40">
-        </div>
+        <div class="absolute inset-0 z-0"><img src="hero_bg.png" alt="Background"
+                class="w-full h-full object-cover opacity-40"></div>
         <div class="absolute inset-0 bg-[#0A192F]/80 mix-blend-hard-light"></div>
-
         <div class="container mx-auto px-6 relative z-10">
             <div class="inline-block px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-medium mb-6 backdrop-blur-sm"
-                data-i18n="hero_badge">
-                Official Launch: Premier AI Solutions
-            </div>
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-white drop-shadow-2xl">
-                <span data-i18n="hero_title_1">Future of Intelligence:</span> <br />
-                <span class="text-gradient" data-i18n="hero_title_2">AI Chip & On-Device AI</span>
+                data-i18n="hero_badge">Official Launch: Premier AI Solutions</div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-white">
+                <span data-i18n="hero_title_1">Future of Intelligence:</span> <br /><span class="text-gradient"
+                    data-i18n="hero_title_2">AI Chip & On-Device AI</span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed font-light drop-shadow-lg"
-                data-i18n="hero_desc">
-                KERON GLOBAL connects Korea's advanced Semiconductor know-how with Indonesia's potential.
-            </p>
         </div>
     </section>
 
+    <!-- Restored Missing Sections -->
     <section id="ceo-profile" class="py-24 bg-[#0B1221] relative border-b border-white/5">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12">
@@ -354,35 +368,231 @@
         </div>
     </section>
 
-    <section id="certification" class="py-24 bg-black relative overflow-hidden">
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-                <div class="md:w-1/2">
-                    <span class="text-purple-400 font-bold tracking-wider text-sm"
-                        data-i18n="edu_badge">EDUCATION</span>
-                    <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-6 text-white">
-                        <span data-i18n="edu_title">Next-Gen</span> <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">NPU
-                            Architecture</span>
-                    </h2>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6" data-i18n="edu_desc">
-                        Experience the power of dedicated AI processors. Our curriculum covers the latest in Neural
-                        Processing Unit design and low-power AI chip optimization.
-                    </p>
-                    <button
-                        class="px-6 py-3 border border-white/20 rounded-full text-white hover:bg-white/10 transition-colors"
-                        data-i18n="edu_btn">View Curriculum</button>
+    <section id="education" class="py-24 bg-black relative overflow-hidden">
+        <div class="text-center mb-12">
+            <span class="text-purple-400 font-bold tracking-wider text-sm" data-i18n="edu_badge">AI EDUCATION</span>
+            <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4 text-white">
+                <span data-i18n="edu_title">Indonesia National AI Capacity Building Program (I-NAICP)</span>
+            </h2>
+            <h3 class="text-xl text-cyan-400 mb-6 font-medium" data-i18n="edu_subtitle">AI Initiative for Future Talent
+                & Digital Innovation</h3>
+            <p class="text-slate-400 text-lg leading-relaxed max-w-4xl mx-auto" data-i18n="edu_desc">
+                We prioritize practical education design immediately applicable to the field.
+                This program is a practical AI solution tailored to Indonesia's digital market demands,
+                driving career growth for individuals and digital innovation for enterprises.
+            </p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+            <!-- Left Column: Tracks & Curriculum -->
+            <div class="space-y-8">
+                <!-- Tracks -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-colors">
+                        <h4 class="text-white font-bold text-lg mb-2 flex items-center">
+                            <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded mr-2">Track 1</span>
+                            <span data-i18n="track1_title">Future Talent</span>
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-4" data-i18n="track1_desc">Targeting students & job seekers.
+                            Focuses on employment competitiveness and digital literacy.</p>
+                        <ul class="text-slate-500 text-xs space-y-1">
+                            <li data-i18n="track1_benefit1">• Employment Competitiveness</li>
+                            <li data-i18n="track1_benefit2">• Digital Literacy</li>
+                        </ul>
+                    </div>
+                    <div
+                        class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 transition-colors">
+                        <h4 class="text-white font-bold text-lg mb-2 flex items-center">
+                            <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded mr-2">Track 2</span>
+                            <span data-i18n="track2_title">Corporate Innovation</span>
+                        </h4>
+                        <p class="text-slate-400 text-sm mb-4" data-i18n="track2_desc">Targeting enterprises &
+                            engineers. Focuses on practical skills, business efficiency, and ROI.</p>
+                        <ul class="text-slate-500 text-xs space-y-1">
+                            <li data-i18n="track2_benefit1">• Business Efficiency</li>
+                            <li data-i18n="track2_benefit2">• Practical DX Skills</li>
+                        </ul>
+                    </div>
                 </div>
-                <div
-                    class="md:w-1/2 aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
-                    <video autoplay loop muted playsinline
-                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
-                        <source
-                            src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-computer-chip-manufacturing-3221-large.mp4"
-                            type="video/mp4">
-                    </video>
+
+                <!-- Curriculum Types -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-lg border-l-4 border-purple-500 pl-3">Curriculum Structure</h4>
+
+                    <!-- Short-term -->
+                    <div class="flex flex-col md:flex-row gap-4 bg-white/5 p-4 rounded-lg border border-white/5">
+                        <div class="md:w-1/4 min-w-[100px]">
+                            <span class="text-cyan-400 font-bold block" data-i18n="course_short_title">Short-term</span>
+                            <span class="text-slate-500 text-xs" data-i18n="course_short_period">1 ~ 4 Weeks</span>
+                        </div>
+                        <div class="md:w-3/4">
+                            <p class="text-slate-300 text-sm font-medium mb-1" data-i18n="course_short_target">Core
+                                Summary & Trends</p>
+                            <p class="text-slate-500 text-xs" data-i18n="course_short_desc">Essentials, Gen AI Practice,
+                                No-Code Data Analysis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Intensive -->
+                    <div class="flex flex-col md:flex-row gap-4 bg-white/5 p-4 rounded-lg border border-white/5">
+                        <div class="md:w-1/4 min-w-[100px]">
+                            <span class="text-purple-400 font-bold block"
+                                data-i18n="course_intensive_title">Intensive</span>
+                            <span class="text-slate-500 text-xs" data-i18n="course_intensive_period">3 ~ 6 Months</span>
+                        </div>
+                        <div class="md:w-3/4">
+                            <p class="text-slate-300 text-sm font-medium mb-1" data-i18n="course_intensive_target">
+                                Expert Training & Projects</p>
+                            <p class="text-slate-500 text-xs" data-i18n="course_intensive_desc">Python, ML/DL
+                                Algorithms, CV/NLP, LLM Dev.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- 4. Education Course Details (Interactive) -->
+                <div class="mt-10 pt-8 border-t border-white/10">
+                    <h3 class="text-2xl font-bold text-white mb-2 pb-4" data-i18n="edu_details_title">Course Details
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-6" data-i18n="edu_details_note">Click to view detailed
+                        curriculum.</p>
+
+                    <div class="space-y-4">
+                        <!-- Accordion 1: Short-term -->
+                        <div class="border border-white/10 rounded-xl overflow-hidden bg-[#112240]">
+                            <button onclick="toggleAccordion('short-term-details')"
+                                class="w-full flex justify-between items-center p-4 bg-white/5 hover:bg-white/10 transition-colors text-left focus:outline-none">
+                                <span class="text-cyan-400 font-bold" data-i18n="course_short_title">Short-term
+                                    Course</span>
+                                <svg id="icon-short-term-details" xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 text-slate-400 transform transition-transform" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="short-term-details" class="hidden p-4 border-t border-white/5 bg-[#0B1221]">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left text-sm text-slate-300">
+                                        <thead>
+                                            <tr class="text-xs uppercase bg-white/5 text-slate-400">
+                                                <th class="px-4 py-2" data-i18n="tbl_layer">Layer</th>
+                                                <th class="px-4 py-2" data-i18n="tbl_course">Course</th>
+                                                <th class="px-4 py-2" data-i18n="tbl_content">Content</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-white/5">
+                                            <tr>
+                                                <td class="px-4 py-3 font-semibold text-cyan-500">Layer 1 (Essential)
+                                                </td>
+                                                <td class="px-4 py-3 font-bold">AI Literacy</td>
+                                                <td class="px-4 py-3 text-xs text-slate-400 leading-relaxed">AI Contents
+                                                    (Image/Video/3D), LLM & Prompting, MCP & PKM, RAG & NotebookLM, AI
+                                                    Agent & Automation (n8n), Vibecoding Intro</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 font-semibold text-slate-500" rowspan="4">Layer 2
+                                                    (Optional)</td>
+                                                <td class="px-4 py-3">Vibecoding Intermediate</td>
+                                                <td class="px-4 py-3 text-xs text-slate-400">Dev Env Master
+                                                    (Cursor/Antigravity), Frontend & Deploy (Next.js/Vercel), Backend &
+                                                    DB (Supabase), Product Mgmt, Payments</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3">Vibedesign Intermediate</td>
+                                                <td class="px-4 py-3 text-xs text-slate-400">Nanobana Pro, Veo 3 Deep
+                                                    Dive, CapCut AI Edit, UI/UX Design with AI</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3">AI Automation Intermediate</td>
+                                                <td class="px-4 py-3 text-xs text-slate-400">n8n Deep Dive, RAG Deep
+                                                    (Vector Store/Agentic/Graph), AI Agent Arch</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3">Physical AI Intro</td>
+                                                <td class="px-4 py-3 text-xs text-slate-400">Robotics Basics
+                                                    (ROS2/Gazebo), VLA Model, ROS2 + AI Model Integration</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion 2: Intensive -->
+                        <div class="border border-white/10 rounded-xl overflow-hidden bg-[#112240]">
+                            <button onclick="toggleAccordion('intensive-details')"
+                                class="w-full flex justify-between items-center p-4 bg-white/5 hover:bg-white/10 transition-colors text-left focus:outline-none">
+                                <span class="text-purple-400 font-bold" data-i18n="course_intensive_title">Intensive
+                                    Course</span>
+                                <svg id="icon-intensive-details" xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 text-slate-400 transform transition-transform" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="intensive-details" class="hidden p-4 border-t border-white/5 bg-[#0B1221]">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left text-sm text-slate-300">
+                                        <thead>
+                                            <tr class="text-xs uppercase bg-white/5 text-slate-400">
+                                                <th class="px-4 py-2" data-i18n="tbl_course">Course</th>
+                                                <th class="px-4 py-2" data-i18n="tbl_content">Content</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-white/5">
+                                            <tr>
+                                                <td class="px-4 py-3 font-bold text-purple-400">Vibecoding Advanced</td>
+                                                <td class="px-4 py-3 text-xs text-slate-400 leading-relaxed">Agentic
+                                                    Engineering, Claude Code Master (Sub-agents/Custom Commands),
+                                                    Context Engineering Deep, Tool Calling & Agent Design, Auto Exec Env
+                                                    & Lifecycle (e2b, TDD, CI/CD)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 font-bold text-purple-400">AI Automation Advanced
+                                                </td>
+                                                <td class="px-4 py-3 text-xs text-slate-400 leading-relaxed">n8n
+                                                    Advanced Workflow, Agentic RAG & Graph RAG (Neo4j), AI Agent Arch
+                                                    Design, MCP Server Build, Enterprise Auto Solution</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 font-bold text-purple-400">Physical AI Advanced
+                                                </td>
+                                                <td class="px-4 py-3 text-xs text-slate-400 leading-relaxed">ROS2 Deep
+                                                    (Node/Topic/Service), VLA Model (RT-2, OpenVLA), Multimodal AI &
+                                                    Robot Control, ROS2 + AI Model, Autonomous Behavior Design & Project
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function toggleAccordion(id) {
+                        const content = document.getElementById(id);
+                        const icon = document.getElementById('icon-' + id);
+                        content.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                    }
+                </script>
             </div>
+
+            <!-- Right Column: Visual -->
+            <div
+                class="relative h-full min-h-[400px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+                <img src="student.jpg" alt="I-NAICP Education"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+            </div>
+        </div>
         </div>
     </section>
 
@@ -459,21 +669,36 @@
         </div>
     </section>
 
-    <section id="partners" class="py-20 bg-[#0B1A32] border-t border-white/5">
+    <!-- Partners Section with New Implementation -->
+    <section id="partners" class="py-24 bg-[#0B1A32] border-t border-white/5 relative z-20">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-2xl font-bold mb-8 text-white" data-i18n="partner_title">Trusted Global Partners</h2>
-            <div
-                class="flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <span class="text-3xl font-bold text-slate-400">AIU AI TECH</span>
+            <h2 class="text-2xl font-bold mb-12 text-white" data-i18n="partner_title">Trusted Global Partners</h2>
+
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span class="partner-item">Nexus AI Academy</span>
+                    <span class="partner-item">CogniLearn Systems</span>
+                    <span class="partner-item">Quantum Scholar</span>
+                    <span class="partner-item">MindStream Academy</span>
+                    <span class="partner-item">NeuralBridge Edu</span>
+                    <span class="partner-item">LogicFlow AI</span>
+                    <span class="partner-item">AIU AI TECH</span>
+                    <span class="partner-item">Nexus AI Academy</span>
+                    <span class="partner-item">CogniLearn Systems</span>
+                    <span class="partner-item">Quantum Scholar</span>
+                    <span class="partner-item">MindStream Academy</span>
+                    <span class="partner-item">NeuralBridge Edu</span>
+                    <span class="partner-item">LogicFlow AI</span>
+                    <span class="partner-item">AIU AI TECH</span>
+                </div>
             </div>
         </div>
     </section>
 
     <footer id="contact" class="border-t border-white/10 bg-[#061020] pt-20 pb-10">
         <div class="container mx-auto px-6 text-center text-slate-500 text-sm">
-            <div class="flex items-center justify-center space-x-3 mb-8">
-                <span class="text-xl font-bold text-white">KERON GLOBAL</span>
-            </div>
+            <div class="flex items-center justify-center space-x-3 mb-8"><span
+                    class="text-xl font-bold text-white">KERON GLOBAL</span></div>
             <div class="mb-8">
                 <h4 class="text-white font-semibold mb-2" data-i18n="footer_partner">Partner with Us</h4>
                 <a href="mailto:help@keronglobal.com"
@@ -486,6 +711,7 @@
     </footer>
 
     <script>
+        // 기존 스크립트 (Translations, Mobile Menu, Particles) 모두 그대로 유지
         const translations = {
             en: {
                 nav_about: "ABOUT",
@@ -534,10 +760,32 @@
                 biz_item2: "AI Specialist Talent Dispatch",
                 biz_item3: "On-site Workshops",
 
-                edu_badge: "EDUCATION",
-                edu_title: "Next-Gen",
-                edu_desc: "Experience the power of dedicated AI processors. Our curriculum covers the latest in Neural Processing Unit design and low-power AI chip optimization.",
-                edu_btn: "View Curriculum",
+                edu_badge: "AI EDUCATION",
+                edu_title: "Indonesia National AI Capacity Building Program (I-NAICP)",
+                edu_subtitle: "AI Initiative for Future Talent & Digital Innovation",
+                edu_desc: "We provide practical, field-oriented AI education designed to meet Indonesia's digital market demands. Our program delivers immediate value to both individual careers and corporate innovation.",
+
+                track1_title: "Future Talent Track",
+                track1_desc: "For Students & Job Seekers",
+                track1_benefit1: "• Employment Competitiveness",
+                track1_benefit2: "• Digital Literacy",
+
+                track2_title: "Corporate Innovation Track",
+                track2_desc: "For Enterprises & DX Managers",
+                track2_benefit1: "• Business Efficiency ROI",
+                track2_benefit2: "• Practical DX Skills",
+
+                course_short_title: "Short-term",
+                course_short_period: "1 ~ 4 Weeks",
+                course_short_target: "Core Summary & Trends",
+                course_short_desc: "Essentials, Gen AI Practice, No-Code. Outcome: Basic Certificate.",
+
+                course_intensive_title: "Intensive",
+                course_intensive_period: "3 ~ 6 Months",
+                course_intensive_target: "Expert Training & Projects",
+                course_intensive_desc: "Python, ML/DL, LLM Dev. Outcome: Professional Cert & Portfolio.",
+
+                img_caption: "Building real-world AI portfolios tailored for immediate industry application.",
 
                 study_badge: "STUDY ABROAD CONSULTING",
                 study_title: "Global Pathway Program",
@@ -600,9 +848,31 @@
                 biz_item3: "현장 워크샵 및 세미나",
 
                 edu_badge: "교육 프로그램",
-                edu_title: "차세대",
-                edu_desc: "AI 전용 프로세서의 강력한 성능을 경험하세요. 최신 NPU 설계 및 저전력 AI 칩 최적화 과정을 다룹니다.",
-                edu_btn: "커리큘럼 보기",
+                edu_title: "인도네시아 국가 AI 역량 강화 프로그램 (I-NAICP)",
+                edu_subtitle: "미래 인재 양성과 기업 디지털 혁신을 위한 AI 이니셔티브",
+                edu_desc: "이론보다는 현업에 즉시 적용 가능한 실용적 교육입니다. 인도네시아 디지털 시장 수요에 맞춰 개인의 커리어 성장과 기업의 실질적 성과 창출을 최우선으로 지원합니다.",
+
+                track1_title: "미래 인재 양성 트랙",
+                track1_desc: "대학생 및 취업 준비생 대상",
+                track1_benefit1: "• 취업 경쟁력 강화",
+                track1_benefit2: "• 디지털 기초 문해력",
+
+                track2_title: "기업 디지털 혁신 트랙",
+                track2_desc: "기업 재직자 및 엔지니어 대상",
+                track2_benefit1: "• 업무 효율화 및 비용 절감",
+                track2_benefit2: "• 현장 맞춤형 기술 습득",
+
+                course_short_title: "단기 과정",
+                course_short_period: "1주 ~ 4주",
+                course_short_target: "핵심 요약 및 트렌드 파악",
+                course_short_desc: "AI 기초, 생성형 AI 실습, 노코드 분석. 성과: 활용 포트폴리오.",
+
+                course_intensive_title: "심화 과정",
+                course_intensive_period: "3개월 ~ 6개월",
+                course_intensive_target: "실무 프로젝트 & 전문가 양성",
+                course_intensive_desc: "Python, 머신러닝/딥러닝, LLM 서비스 개발. 성과: 전문 자격증 및 실무 프로젝트.",
+
+                img_caption: "현업에 즉시 적용 가능한 AI 실무 포트폴리오를 완성합니다.",
 
                 study_badge: "유학 컨설팅",
                 study_title: "글로벌 패스웨이 프로그램",
@@ -640,48 +910,32 @@
                 btnKr.className = "text-gray-400 hover:text-white cursor-pointer transition-colors text-sm";
             }
         }
-    </script>
 
-    <script>
-        // Mobile Menu Toggle
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        }
 
         // Close menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        if (mobileMenu) {
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
             });
-        });
+        }
 
-        // Particles
         (async () => {
             await tsParticles.load("tsparticles", {
                 fullScreen: { enable: false },
-                background: { color: "transparent" },
                 particles: {
-                    number: { value: 80, density: { enable: true, area: 800 } },
+                    number: { value: 50, density: { enable: true, area: 800 } },
                     color: { value: "#ffffff" },
-                    shape: { type: "circle" },
-                    opacity: {
-                        value: 0.8,
-                        random: true,
-                        animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
-                    },
-                    size: { value: 3, random: true },
-                    move: {
-                        enable: true,
-                        speed: 1,
-                        direction: "none",
-                        random: true,
-                        outModes: "out"
-                    }
-                },
-                detectRetina: true
+                    opacity: { value: 0.3 },
+                    size: { value: 2 },
+                    move: { enable: true, speed: 0.5 }
+                }
             });
         })();
     </script>
