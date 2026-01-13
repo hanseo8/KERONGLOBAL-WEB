@@ -119,7 +119,7 @@
                 </svg>
             </button>
             <a href="#"
-                class="absolute left-1/2 transform -translate-x-1/2 md:static md:translate-x-0 md:transform-none z-50 flex items-center space-x-2 md:space-x-3">
+                class="absolute left-1/2 transform -translate-x-1/2 md:static md:translate-x-0 md:transform-none z-50 flex items-center space-x-1 md:space-x-2">
                 <div class="relative h-12 w-auto">
                     <img src="logo-transparent.png" alt="KERON GLOBAL Logo" class="h-12 w-auto object-contain" />
                 </div>
@@ -823,7 +823,7 @@
                 ceo_edu_usa: "<strong class='text-white block text-base mb-2'>Pennsylvania State University 졸업</strong>Bachelor of Science in Economics",
                 ceo_edu_nz: "<strong class='text-white block text-base mb-2'>학력 사항</strong>Buckland Beach Intermediate 졸업<br>Macleans College 졸업<br>Auckland University of Technology 자퇴",
 
-                history_title: "우리의 여정",
+                history_title: "연혁",
                 hist_2026_title: "케론글로벌 설립",
                 hist_2026_desc: "글로벌 교육과 미래 기술을 연결한다는 비전으로 설립",
                 hist_2025_title: "케론글로벌 설립",
@@ -849,10 +849,14 @@
                 biz_item2: "AI 전문 인력 파견",
                 biz_item3: "현장 워크샵 및 세미나",
 
-                edu_badge: "교육 프로그램",
+                nav_education: "AI교육",
+                edu_badge: "AI 교육 프로그램",
                 edu_title: "인도네시아 국가 AI 역량 강화 프로그램 (I-NAICP)",
                 edu_subtitle: "미래 인재 양성과 기업 디지털 혁신을 위한 AI 이니셔티브",
                 edu_desc: "이론보다는 현업에 즉시 적용 가능한 실용적 교육입니다. 인도네시아 디지털 시장 수요에 맞춰 개인의 커리어 성장과 기업의 실질적 성과 창출을 최우선으로 지원합니다.",
+
+                edu_details_title: "커리큘럼 상세",
+                edu_details_note: "클릭하여 상세 커리큘럼을 확인하세요.",
 
                 track1_title: "미래 인재 양성 트랙",
                 track1_desc: "대학생 및 취업 준비생 대상",
@@ -912,6 +916,11 @@
                 btnKr.className = "text-gray-400 hover:text-white cursor-pointer transition-colors text-sm";
             }
         }
+
+        // Initialize with Korean language
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('kr');
+        });
 
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
