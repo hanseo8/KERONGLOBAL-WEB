@@ -102,6 +102,19 @@
                 transform: translateX(-50%);
             }
         }
+
+        /* Scroll Reveal Animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
 </head>
@@ -166,6 +179,9 @@
                         <a href="#education"
                             class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors border-b border-white/5"
                             data-i18n="nav_education">AI Education</a>
+                        <a href="#manpower"
+                            class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors border-b border-white/5"
+                            data-i18n="nav_manpower">Global Manpower</a>
                         <a href="#study-abroad"
                             class="block px-6 py-3 hover:bg-white/5 hover:text-cyan-400 transition-colors"
                             data-i18n="nav_study">Study Abroad</a>
@@ -199,6 +215,8 @@
                         AREAS</span>
                     <a href="#education" class="block text-slate-300 hover:text-white py-1 pl-4"
                         data-i18n="nav_education">AI Education</a>
+                    <a href="#manpower" class="block text-slate-300 hover:text-white py-1 pl-4"
+                        data-i18n="nav_manpower">Global Manpower</a>
                     <a href="#study-abroad" class="block text-slate-300 hover:text-white py-1 pl-4"
                         data-i18n="nav_study">Study Abroad</a>
                 </div>
@@ -375,13 +393,15 @@
                     <!-- Tracks -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div
-                            class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-colors">
-                            <h4 class="text-white font-bold text-lg mb-2 flex items-center">
-                                <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded mr-2">Track
+                            class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-purple-500/50 transition-colors flex flex-col h-full">
+                            <h4 class="text-white font-bold text-lg mb-2 flex items-start gap-2">
+                                <span
+                                    class="bg-purple-500/20 text-purple-300 text-xs px-2 py-1 rounded shrink-0 mt-1">Track
                                     1</span>
                                 <span data-i18n="track1_title">Future Talent</span>
                             </h4>
-                            <p class="text-slate-400 text-sm mb-4" data-i18n="track1_desc">Targeting students & job
+                            <p class="text-slate-400 text-sm mb-4 flex-grow" data-i18n="track1_desc">Targeting students
+                                & job
                                 seekers.
                                 Focuses on employment competitiveness and digital literacy.</p>
                             <ul class="text-slate-500 text-xs space-y-1">
@@ -390,12 +410,14 @@
                             </ul>
                         </div>
                         <div
-                            class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 transition-colors">
-                            <h4 class="text-white font-bold text-lg mb-2 flex items-center">
-                                <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded mr-2">Track 2</span>
+                            class="bg-white/5 border border-white/10 rounded-xl p-6 hover:border-cyan-500/50 transition-colors flex flex-col h-full">
+                            <h4 class="text-white font-bold text-lg mb-2 flex items-start gap-2">
+                                <span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-1 rounded shrink-0 mt-1">Track
+                                    2</span>
                                 <span data-i18n="track2_title">Corporate Innovation</span>
                             </h4>
-                            <p class="text-slate-400 text-sm mb-4" data-i18n="track2_desc">Targeting enterprises &
+                            <p class="text-slate-400 text-sm mb-4 flex-grow" data-i18n="track2_desc">Targeting
+                                enterprises &
                                 engineers. Focuses on practical skills, business efficiency, and ROI.</p>
                             <ul class="text-slate-500 text-xs space-y-1">
                                 <li data-i18n="track2_benefit1">• Business Efficiency</li>
@@ -598,11 +620,97 @@
         </div>
     </section>
 
+    <section id="manpower" class="py-24 bg-[#0B1221] relative border-b border-white/5 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-cyan-400 font-bold tracking-wider text-sm" data-i18n="man_badge">GLOBAL
+                    MANPOWER</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2 text-white" data-i18n="man_title">Premium Indonesian
+                    Talent Solution</h2>
+                <div class="w-20 h-1 bg-cyan-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <div
+                    class="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all group">
+                    <div
+                        class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="man_f1_title">Verified Network</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="man_f1_desc">Indonesian
+                        government-certified dispatch network. Direct management by local subsidiaries without
+                        middlemen.</p>
+                </div>
+                <div
+                    class="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all group">
+                    <div
+                        class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4"><span data-i18n="man_f2_title">Talent Pool</span>
+                        <span class="text-cyan-400">1,000+</span>
+                    </h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="man_f2_desc">Immediate assignment of
+                        skilled workers. Over 140 specialists in caregiving & manufacturing ready for interview.</p>
+                </div>
+                <div
+                    class="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/30 transition-all group">
+                    <div
+                        class="w-12 h-12 bg-cyan-500/10 rounded-xl flex items-center justify-center text-cyan-400 mb-6 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="man_f3_title">Quality & Discipline</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="man_f3_desc">Intensive 5S training
+                        (Sort, Set, Shine, Standardize, Sustain) and Japanese language/culture immersion.</p>
+                </div>
+            </div>
+
+            <div class="bg-navy-800 rounded-3xl p-8 md:p-12 border border-white/5 shadow-2xl">
+                <h3 class="text-2xl font-bold text-white mb-10 text-center" data-i18n="man_industry_title">Core Service
+                    Sectors</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center p-6 bg-white/5 rounded-xl">
+                        <div class="text-3xl mb-4">🏥</div>
+                        <p class="font-bold text-white mb-1" data-i18n="man_i1">Caregiving</p>
+                        <p class="text-xs text-slate-500">N4+ Passed</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/5 rounded-xl">
+                        <div class="text-3xl mb-4">⚙️</div>
+                        <p class="font-bold text-white mb-1" data-i18n="man_i2">Manufacturing</p>
+                        <p class="text-xs text-slate-500">Experienced</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/5 rounded-xl">
+                        <div class="text-3xl mb-4">🍎</div>
+                        <p class="font-bold text-white mb-1" data-i18n="man_i3">Agriculture</p>
+                        <p class="text-xs text-slate-500">Young Talent</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/5 rounded-xl">
+                        <div class="text-3xl mb-4">🏨</div>
+                        <p class="font-bold text-white mb-1" data-i18n="man_i4">Hospitality</p>
+                        <p class="text-xs text-slate-500">Service Mind</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="study-abroad" class="py-24 bg-[#0A192F] relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-20">
-                <source src="hero-bg.mp4" type="video/mp4">
-            </video>
+            <!-- Video removed due to missing file, using static fallback -->
+            <div class="w-full h-full bg-gradient-to-br from-indigo-900 to-slate-900 opacity-20"></div>
             <div class="absolute inset-0 bg-[#0A192F]/90"></div>
         </div>
 
@@ -725,11 +833,27 @@
                 nav_study: "Study Abroad",
                 nav_partners: "Partners",
                 nav_contact: "Contact",
+                nav_education: "AI Education",
 
                 hero_badge: "Official Launch: Premier AI Solutions",
                 hero_title_1: "Future of Intelligence:",
-                hero_title_2: "AI Chip & On-Device AI",
+                hero_title_2: "Beyond Technology, A People-Centric World",
                 hero_desc: "KERON GLOBAL connects Korea's advanced Semiconductor know-how with Indonesia's potential.",
+
+                nav_manpower: "Global Manpower",
+                man_badge: "GLOBAL MANPOWER",
+                man_title: "Indonesian Talent Dispatch",
+                man_f1_title: "Verified Network",
+                man_f1_desc: "Indonesian government-certified dispatch network. Direct management by local subsidiaries without middlemen.",
+                man_f2_title: "Talent Pool",
+                man_f2_desc: "Immediate assignment of skilled workers. Over 140 specialists in caregiving & manufacturing ready for interview.",
+                man_f3_title: "Quality & Discipline",
+                man_f3_desc: "Intensive 5S training (Sort, Set, Shine, Standardize, Sustain) and Japanese language/culture immersion.",
+                man_industry_title: "Core Service Sectors",
+                man_i1: "Caregiving",
+                man_i2: "Manufacturing",
+                man_i3: "Agriculture",
+                man_i4: "Hospitality",
 
                 ceo_headline: "Bridging Education & Technology",
                 ceo_desc: "\"Based on 15 years of experience in North America and Oceania, I present a real career roadmap beyond simple education. KERON GLOBAL will be a solid bridge connecting Korea and Indonesia through AI technology education and global talent fostering.\"",
@@ -766,6 +890,8 @@
                 edu_title: "Indonesia National AI Capacity Building Program (I-NAICP)",
                 edu_subtitle: "AI Initiative for Future Talent & Digital Innovation",
                 edu_desc: "We provide practical, field-oriented AI education designed to meet Indonesia's digital market demands. Our program delivers immediate value to both individual careers and corporate innovation.",
+                edu_details_title: "Curriculum Details",
+                edu_details_note: "Click to view detailed curriculum.",
 
                 track1_title: "Future Talent Track",
                 track1_desc: "For Students & Job Seekers",
@@ -815,8 +941,23 @@
 
                 hero_badge: "공식 런칭: 프리미엄 AI 솔루션",
                 hero_title_1: "지능의 미래:",
-                hero_title_2: "AI 반도체 & 온디바이스 AI",
+                hero_title_2: "기술을 넘어, 사람이 중심이 되는 세상",
                 hero_desc: "케론글로벌은 한국의 첨단 반도체 노하우와 인도네시아의 잠재력을 연결하여 미래 AI 시대를 선도합니다.",
+
+                nav_manpower: "해외인력 공급",
+                man_badge: "해외 인력 솔루션",
+                man_title: "인도네시아 인재 송출",
+                man_f1_title: "검증된 네트워크",
+                man_f1_desc: "인도네시아 정부 공인 송출망 확보. 현지 법인을 통한 직접 관리로 중간 유통 단계를 제거하고 투명성을 높였습니다.",
+                man_f2_title: "인력 데이터베이스",
+                man_f2_desc: "즉시 현장 투입 가능한 1,000명 이상의 인력풀. 특히 간호 및 제조 분야 전문인력 140명 이상이 상시 대기 중입니다.",
+                man_f3_title: "고품질 교육 체계",
+                man_f3_desc: "철저한 5S 교육(정리, 정돈, 청소, 청결, 습관화)과 한국/일본의 조직 문화 및 언어 집중 교육을 수료한 인재만을 선발합니다.",
+                man_industry_title: "핵심 서비스 분야",
+                man_i1: "의료/간병",
+                man_i2: "제조/생산",
+                man_i3: "농업/축산",
+                man_i4: "호텔/숙박",
 
                 ceo_headline: "교육과 기술을 잇는 가교",
                 ceo_desc: "\"15년간의 북미와 오세아니아 현지 경험을 바탕으로, 단순한 교육을 넘어 실질적인 커리어 로드맵을 제시합니다. 케론글로벌은 AI 기술 교육과 글로벌 인재 양성을 통해 한국과 인도네시아를 잇는 든든한 가교가 되겠습니다.\"",
@@ -949,6 +1090,31 @@
                 }
             });
         })();
+
+        // Scroll Reveal Observer
+        document.addEventListener("DOMContentLoaded", function () {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Target meaningful content elements
+            const elements = document.querySelectorAll("section h1, section h2, section h3, section h4, section p, section .grid > div, section ul > li");
+            elements.forEach(el => {
+                el.classList.add('reveal-on-scroll');
+                observer.observe(el);
+            });
+        });
     </script>
 </body>
 
