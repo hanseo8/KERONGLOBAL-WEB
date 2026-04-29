@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KERON GLOBAL - AI & Education</title>
+    <meta name="description"
+        content="케론글로벌(KERON GLOBAL) - 구 강서물산. 세상의 모든 가치를 연결하여 더 나은 내일을 만듭니다. 운도식품, 펫크루, 케어온케이, 강서물산, 유학 컨설팅, 해외 인력 송출 서비스.">
+    <meta name="keywords" content="케론글로벌, 강서물산, KERON GLOBAL, 유학컨설팅, 기업 솔루션, 인력매칭, 비즈니스 시찰, 운도식품, 펫크루, 케어온케이">
+    <title>KERON GLOBAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -989,10 +992,10 @@
                     btn_check_japan: "Check Japan Manpower →",
                     nav_travel: "Travel & Logistics",
 
-                    hero_badge: "Official Launch: Premier AI Solutions",
-                    hero_title_1: "Connecting Talent,",
-                    hero_title_2: "Empowering the Future.",
-                    hero_desc: "From AI education to study abroad consulting, global manpower matching, and customized business tours. KERON GLOBAL opens a new path for global business by connecting people and technology.",
+                    hero_badge: "Official Launch",
+                    hero_title_1: "Beyond Business,",
+                    hero_title_2: "Connecting Every Life",
+                    hero_desc: "Connecting all values in the world to create a better tomorrow.",
 
                     man_badge: "GLOBAL MANPOWER",
                     man_title: "Indonesian Talent Dispatch",
@@ -1101,9 +1104,9 @@
                     nav_travel: "맞춤 여행 & 비즈니스 시찰",
 
                     hero_badge: "2026 GLOBAL VISION",
-                    hero_title_1: "Connecting Talent,",
-                    hero_title_2: "Empowering the Future.",
-                    hero_desc: "AI 교육부터 유학 컨설팅, 글로벌 인력 매칭, 그리고 맞춤형 비즈니스 투어까지.<br>케론글로벌은 사람과 기술을 연결하여 글로벌 비즈니스의 새로운 길을 엽니다.",
+                    hero_title_1: "Beyond Business,",
+                    hero_title_2: "Connecting Every Life",
+                    hero_desc: "세상의 모든 가치를 연결하여, 더 나은 내일을 만듭니다.",
 
                     man_badge: "해외 인력 솔루션",
                     man_title: "인도네시아 인재 송출",
@@ -1301,6 +1304,11 @@
                 const elements = document.querySelectorAll("section h1, section h2, section h3, section h4, section p, section .grid > div, section ul > li");
                 elements.forEach(el => {
                     el.classList.add('reveal-on-scroll');
+                    observer.observe(el);
+                });
+
+                // Also observe any elements that already have the class manually added
+                document.querySelectorAll(".reveal-on-scroll").forEach(el => {
                     observer.observe(el);
                 });
             });
